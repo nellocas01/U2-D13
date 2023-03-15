@@ -12,6 +12,11 @@
       crossorigin="anonymous"
     />
   </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+  </style>
   <body>
     <div class="container">
       <div id="todos-container" class="row row-cols-sm-3 row-cols-lg-4">
@@ -36,19 +41,35 @@
             const col = document.createElement("div");
             col.className = "col";
             col.innerHTML = `
-                    <div class="card">
-                        <div class="card-body">
-                            <img class="card-img" src="${todo.img}" alt="image"/>
-                            <h5 class="card-title">${todo.title}</h5>
-                            <p class="card-text">${todo.price}</p>
-                            <button class="badge bg-dark" onclick="delete()">Scarta</button >
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img" src="${todo.img}" alt="image"/>
+                                <h5 class="card-title">${todo.title}</h5>
+                                <p class="card-text">${todo.price}</p>
+                                <button class="badge bg-dark" onclick="buy()">Compra ora</button >
+                                <button class="badge bg-dark" onclick="del()">Scarta</button >
+                            </div>
                         </div>
-                    </div>
-                        `;
+                            `;
             grid.appendChild(col);
           });
         })
         .catch((error) => console.log("CATCH", error));
+
+      function del() {
+        const element = document.querySelector(".col");
+        element.remove();
+      }
+      del();
+
+      function buy() {
+        const li = document.createElement("ul");
+        li.innerHTML = `
+            <li>${col}</li>
+
+            `;
+      }
+      buy();
     </script>
   </body>
 </html>
